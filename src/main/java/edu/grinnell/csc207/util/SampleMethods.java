@@ -1,5 +1,7 @@
 package edu.grinnell.csc207.util;
 
+import java.io.PrintWriter;
+
 /**
  * A variety of methods for which students should write tests.
  *
@@ -16,7 +18,7 @@ public class SampleMethods {
    * @return The temperature in Fahrenheit.
    */
   public static int c2f(int temp) {
-    return (temp - 32) * (5 / 9);
+    return ((temp *(9)/5) + 32);
   } // c2f(int)
 
   /**
@@ -37,25 +39,19 @@ public class SampleMethods {
     } else if (p % 2 == 0) {
       // Recursive case: When p is 2k, x^(2k) = (x^k) * (x^k)
       int tmp = expt(x, p / 2);
-      return tmp * tmp;
+      return (tmp * tmp);
     } else {
       // Recursive case: When p is odd, result is x*(x^(p-1))
-      return expt(x * x, (p - 1) / 2);
+      return x * expt(x, (p - 1));
     } // if p is odd.
   } // expt(int,int)
 
   /**
    * Compute x^p.
    *
-   * @param x a real number
-   * @param p a non-negative integer
-   * @return an approximation of x^p
-   */
-  public static double expt(double x, int p) {
-    if (p == 0) {
-      // Base case: When p = 0, result is 1
-      return 1;
-    } else if (p == 1) {
+   * @param x a real numberse 3: Temperature conversion
+
+You’ve seen how VSCode lets you create and run tests. Now it’s time to write a few o
       // Base case: When p = 1, result is x
       return x;
     } else if (p % 2 == 0) {
@@ -84,13 +80,34 @@ public class SampleMethods {
     String noAs = ""; // The string we're creating with no a's.
 
     for (int i = 0; i < str.length(); i++) {
-      if (str.charAt(i) == 'a') {
-        noAs += str.charAt(i++);
+      if (str.charAt(i) != 'a') {
+        noAs += str.charAt(i);
       } // if we see the a
     } // for each position
 
     return noAs;
   } // removeAs
+
+  /**
+   * Some quick experiments with the expt method.
+   */
+  public static void exptExperiments(PrintWriter pen) {
+    exptExperiment(pen, 2, 10);
+  } // exptExperiments(PrintWriter)
+
+  /** 
+   * One quick experiment with the expt method.
+   */
+  public static void exptExperiment(PrintWriter pen, int base, int exponent){
+    pen.print(base + "^" + exponent + " = ");
+    pen.flush();
+    pen.println(SampleMethods.expt(base, exponent));
+  } // exptExperiment(String[])
+
+
+
+
+
 
   /**
    * Remove all of the instances of the letter 'b' from a string.
@@ -105,14 +122,15 @@ public class SampleMethods {
    *       such that noBs[k] = str[i] and noBs[l] = str[j].
    */
   public static String removeBs(String str) {
-    StringBuffer noBs = new StringBuffer(str);
-    for (int i = 0; i < str.length(); i++) {
-      if (noBs.charAt(i) == 'b') {
-        noBs.deleteCharAt(i);
-      } // if the char at position i is a 'b'
-    } // for each position in the string
+    String noBs = ""; // The string we're creating with no b's.
 
-    return noBs.toString();
+    for (int i = 0; i < str.length(); i++) {
+      if (str.charAt(i) != 'b') {
+        noBs += str.charAt(i);
+      } // if we see the b
+    } // for each position
+
+    return noBs;
   } // removeBs(String word)
 
   /**
@@ -127,7 +145,7 @@ public class SampleMethods {
     int result = 0;
 
     for (int i = 0; i < ints.length; i++) {
-      result += result + i;
+      result += ints[i];
     } // for
 
     return result; } // result(int[])

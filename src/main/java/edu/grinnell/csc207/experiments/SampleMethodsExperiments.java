@@ -18,7 +18,17 @@ public class SampleMethodsExperiments {
     PrintWriter pen = new PrintWriter(System.out, true);
     removeAsExperiments(pen);
     pen.close();
+
+
+    
+    SampleMethods.exptExperiments(pen);
+
+
   } // main()
+
+
+
+  
 
   /**
    * Experiments with `removeAs`.
